@@ -21,8 +21,10 @@ authRouter.post(
     let encryptedEmail = "";
     encryptedEmail = encrypt(email);
     const mgr = getManager();
-    const user = await mgr.findOne(UserEntity, { encryptedEmail });
-    console.log("DB OK");
+
+    const user = await mgr.findOne(UserEntity, {
+      encryptedEmail: encryptedEmail,
+    });
 
     if (user) {
       res.sendStatus(409);

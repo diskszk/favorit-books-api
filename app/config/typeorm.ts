@@ -1,4 +1,4 @@
-import { createConnection } from "typeorm";
+import { createConnection, ConnectionOptions } from "typeorm";
 import { NoteEntity, UserEntity, SessionEntity } from "../entities";
 import dotenv from "dotenv";
 dotenv.config();

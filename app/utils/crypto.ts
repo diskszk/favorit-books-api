@@ -1,17 +1,19 @@
 import crypto from "crypto";
 import { cryptoAlgo, cryptoKey, cryptoIv, hashStretch } from "../config";
 
-export const encrypt = (plaintext: string) => {
+export const encrypt = (plaintext: string): string => {
   if (plaintext === "") {
     return "";
   }
+
   const cipher = crypto.createCipheriv(cryptoAlgo, cryptoKey, cryptoIv);
+
   let ciphertext = cipher.update(plaintext, "utf8", "base64");
   ciphertext += cipher.final("base64");
   return ciphertext;
 };
 
-export const decrypt = (ciphertext: string) => {
+export const decrypt = (ciphertext: string): string => {
   if (ciphertext === "") {
     return "";
   }
