@@ -8,10 +8,10 @@
     "esModuleInterop": true,
     "strict": true,
     "noEmit": true,
-    "typeRoots": ["./app/types"],
-    "baseUrl": "./",
-    "paths": {
-      "app/*": ["app/*"]
-    }
+    "typeRoots": ["src/types"]
+    // "baseUrl": "./",
+    // "paths": {
+    //   "app/*": ["src/*"]
+    // }
   }
 }

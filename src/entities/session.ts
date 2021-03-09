@@ -5,7 +5,7 @@ import {
   CreateDateColumn,
   OneToOne,
 } from "typeorm";
-import { UserEntity } from "./users";
+import { UserEntity } from "./user";
 
 @Entity({ name: "sessions" })
 export class SessionEntity {
