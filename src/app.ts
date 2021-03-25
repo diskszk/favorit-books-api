@@ -27,7 +27,7 @@ const main = async () => {
   app.use(express.json());
 
   try {
-    await getConnection();
+    // await getConnection();
   } catch (err) {
     console.error("err");
     throw new Error("DBとの接続に失敗しました。" + err);

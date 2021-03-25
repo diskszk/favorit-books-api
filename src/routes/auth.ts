@@ -47,7 +47,7 @@ authRouter.post(
 
 // ログイン処理
 authRouter.post(
-  "/api/login",
+  "/api/signin",
   wrap(async (req, res) => {
     const email: string = req.body.email || "";
     const password: string = req.body.password || "";
@@ -72,13 +72,14 @@ authRouter.post(
     }
 
     const token = await makeSession(user.id);
-    res.status(200).json({ token });
+    res.header("Set-Cookie", `session_token=${token};`);
+    res.status(200);
   })
 );
 
 // ログアウト機能
 authRouter.post(
-  "/api/logout",
+  "/api/singout",
   wrap(async (req, res) => {
     const userId: string = req.userId || "";
     const token: string = req.token || "";

@@ -51,3 +51,20 @@ usersRouter.get(
     }
   })
 );
+
+usersRouter.get(
+  "/api/",
+  wrap(async (req, res) => {
+    const hoge = "hoge";
+    res.header("Set-Cookie", "hoge=" + hoge + ";");
+    res.json([1, 2, 3, 4]);
+  })
+);
+
+usersRouter.get(
+  "/api/check",
+  wrap(async (req, res) => {
+    const cookie = req.header("set-cookie");
+    console.log("cookie: ", cookie);
+  })
+);
