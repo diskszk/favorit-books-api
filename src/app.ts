@@ -1,9 +1,10 @@
 import "reflect-metadata";
 import express from "express";
-import helmet from "helmet";
-import { getConnection } from "./config";
-import { authMiddleware } from "./middleware";
+// import helmet from "helmet";
+import cors from "cors";
+// import { authMiddleware } from "./middleware";
 import { authRouter, notesRouter, helloRouter, usersRouter } from "./routes";
+import { createConnection } from "typeorm";
 
 const main = async () => {
   const app = express();
@@ -13,23 +14,18 @@ const main = async () => {
 
   // frontからAPIを叩けない
   // app.use(helmet);
-
   // 指定するサーバーからのリクエストのみにレスポンスを返す。
-  app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", frontendServer);
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    next();
-  });
+  app.use(
+    cors({
+      origin: frontendServer,
+    })
+  );
 
   app.use(express.json());
 
   try {
-    // await getConnection();
+    await createConnection();
   } catch (err) {
-    console.error("err");
     throw new Error("DBとの接続に失敗しました。" + err);
   }
 

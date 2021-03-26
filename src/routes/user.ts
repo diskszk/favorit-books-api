@@ -63,7 +63,7 @@ usersRouter.get(
 
 usersRouter.get(
   "/api/check",
-  wrap(async (req, res) => {
+  wrap(async (req, _res) => {
     const cookie = req.header("set-cookie");
     console.log("cookie: ", cookie);
   })
