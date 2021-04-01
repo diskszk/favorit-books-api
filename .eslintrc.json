@@ -1,0 +1,26 @@
+{
+  "extends": ["eslint:recommended"],
+  "plugins": ["node", "typeorm"],
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2020
+  },
+  "rules": {
+    "node/exports-style": "error",
+    "node/no-deprecated-api": "error",
+    "node/no-missing-require": "error",
+    "node/no-unpublished-bin": "error",
+    // "node/no-unpublished-import": "error",
+    "node/no-unpublished-require": "error",
+    // "node/no-unsupported-features": "error",
+    "node/process-exit-as-throw": "error",
+    "node/shebang": "error",
+
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+  }
+}

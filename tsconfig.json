@@ -1,17 +1,17 @@
 {
   "compilerOptions": {
-    "lib": ["esnext"],
-    "target": "esnext",
+    // "lib": ["esnext"],
+    "target": "es5",
     "module": "commonjs",
+    "outDir": "./dist",
+
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
+    "skipLibCheck": true,
     "strict": true,
-    "noEmit": true,
-    "typeRoots": ["./app/types"],
-    "baseUrl": "./",
-    "paths": {
-      "app/*": ["app/*"]
-    }
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "typeRoots": ["src/types"]
   }
 }
