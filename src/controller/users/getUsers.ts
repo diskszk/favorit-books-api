@@ -1,10 +1,10 @@
-import { getConnection } from "typeorm";
-import { UserEntity } from "../../entities";
+import { getConnection } from 'typeorm';
+import { User } from '../../entity';
 
-export const getUsers = async (): Promise<UserEntity[] | []> => {
+export const getUsers = async (): Promise<User[]> => {
   try {
     const connection = getConnection();
-    const users = connection.manager.find(UserEntity);
+    const users = connection.manager.find(User);
 
     if (!users) {
       return [];
@@ -15,8 +15,8 @@ export const getUsers = async (): Promise<UserEntity[] | []> => {
   }
 };
 
-export const getUser = async (userId: string): Promise<UserEntity | null> => {
-  const repo = getConnection().getRepository(UserEntity);
+export const getUser = async (userId: string): Promise<User | null> => {
+  const repo = getConnection().getRepository(User);
   const user = await repo.findOne({ id: userId });
 
   if (!user) {

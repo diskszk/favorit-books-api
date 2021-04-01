@@ -1,44 +1,37 @@
-import "reflect-metadata";
-import express from "express";
-// import helmet from "helmet";
-import cors from "cors";
-// import { authMiddleware } from "./middleware";
-import { authRouter, notesRouter, helloRouter, usersRouter } from "./routes";
-import { createConnection } from "typeorm";
+import 'reflect-metadata';
+import express from 'express';
+import helmet from 'helmet';
+import cors from 'cors';
+import { helloRouter, usersRouter } from './routes';
+import { createConnection, getConnectionOptions } from 'typeorm';
 
 const main = async () => {
   const app = express();
-  const port = process.env.SERVER_PORT;
+  const port = process.env.PORT || 8000;
 
-  const frontendServer = process.env.FRONTEND_SERVER || "";
-
-  // frontからAPIを叩けない
-  // app.use(helmet);
+  app.use(helmet());
   // 指定するサーバーからのリクエストのみにレスポンスを返す。
   app.use(
     cors({
-      origin: frontendServer,
+      origin: '*',
     })
   );
 
   app.use(express.json());
 
   try {
-    await createConnection();
+    const connectionOptions = await getConnectionOptions();
+    await createConnection(connectionOptions);
   } catch (err) {
-    throw new Error("DBとの接続に失敗しました。" + err);
-  }
-
-  try {
-    // app.use(authMiddleware);
-  } catch (err) {
-    throw new Error("セッションに失敗しました。" + err);
+    throw new Error('DBとの接続に失敗しました。' + err);
   }
 
   app.use(usersRouter);
-  app.use(authRouter);
-  app.use(notesRouter);
   app.use(helloRouter);
+
+  app.get('/', (req, res) => {
+    res.json({ message: 'hello world' });
+  });
 
   app.listen(port, () => {
     console.log(`ready http://localhost:${port}`);
@@ -47,5 +40,5 @@ const main = async () => {
 
 main().catch((err) => {
   console.error(err);
-  process.exit(1); // nodemonでサーバー立ててるとプロセスは続いてしまう
+  process.exit(1);
 });

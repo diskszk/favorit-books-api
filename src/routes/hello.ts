@@ -1,17 +1,14 @@
-import { wrap } from "../utils/wrap";
-import { UserEntity } from "../entities";
-import { Router } from "express";
-import { getManager } from "typeorm";
-import { decrypt } from "../utils/crypto";
+import { wrap } from '../utils/wrap';
+import { Router } from 'express';
 
 export const helloRouter = Router();
 
 helloRouter.get(
-  "/api/hello",
+  '/api/hello',
   wrap(async (req, res) => {
     setTimeout(() => {
       res.status(200);
-      res.json({ hoge: "apple" });
+      res.json({ hoge: 'apple' });
     }, 1000);
   })
 );
