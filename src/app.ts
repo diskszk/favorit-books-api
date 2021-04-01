@@ -3,7 +3,7 @@ import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import { helloRouter, usersRouter } from './routes';
-import { createConnection, getConnectionOptions } from 'typeorm';
+// import { createConnection, getConnectionOptions } from 'typeorm';
 
 const main = async () => {
   const app = express();
@@ -20,8 +20,8 @@ const main = async () => {
   app.use(express.json());
 
   try {
-    const connectionOptions = await getConnectionOptions();
-    await createConnection(connectionOptions);
+    // const connectionOptions = await getConnectionOptions();
+    // await createConnection(connectionOptions);
   } catch (err) {
     throw new Error('DBとの接続に失敗しました。' + err);
   }
