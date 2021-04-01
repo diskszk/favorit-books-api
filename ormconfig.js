@@ -16,7 +16,7 @@ module.exports = {
       : ['src/entity/**/*.ts', 'dist/entity/**/*.js'],
   migrations:
     process.env.NODE_ENV === 'production'
-      ? ['dist/entity/**/*.js']
+      ? ['dist/migration/**/*.js']
       : ['src/migration/**/*.ts'],
   subscribers: ['src/subscriber/**/*.ts'],
   logging: false,
